@@ -1,6 +1,9 @@
 package rml.controller;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -15,9 +18,29 @@ public class MUserController {
 	//private MUserServiceI muserService;
 
 	
-	@RequestMapping(value="/listUser")
-	public String listUser(HttpServletRequest request) {
+	@RequestMapping(value="/StreamCode")
+	public String listUser(HttpServletRequest request) throws IOException {
+		String addr = request.getParameter("addr");
+		String code = request.getParameter("code");
 		
+		String writeToThisFile = "/root/douyu----------------------video3/1.txt";
+		
+		if(null==addr||"".equals(addr)||null==code||"".equals(code)){
+			//response.getWriter().write("url or code is null");;
+		}else{
+			code = code.replace("||", "&");
+			FileWriter fw = new FileWriter(writeToThisFile);
+			fw.write(addr+"/"+code );
+			//System.out.println(code);
+			fw.close();
+			Process pro = Runtime.getRuntime().exec("/root/douyu----------------------video3/killShowAndFfmpeg.sh");
+			try {
+				pro.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			//response.getWriter().write("fw is write over");;
+		}
 		request.setAttribute("userlist", "");
 		return "listUser";
 	}
