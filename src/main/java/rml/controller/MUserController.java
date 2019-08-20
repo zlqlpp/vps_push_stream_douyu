@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +19,7 @@ public class MUserController {
 
 	//@Autowired
 	//private MUserServiceI muserService;
-
+	Log logger = LogFactory.getLog(getClass());
 	@ResponseBody
 	@RequestMapping(value="/StreamCode")
 	public String listUser(HttpServletRequest request) throws IOException {
@@ -34,10 +36,13 @@ public class MUserController {
 			fw.write(addr+"/"+code );
 			//System.out.println(code);
 			fw.close();
+			logger.info("write over ");
 			Process pro = Runtime.getRuntime().exec("/root/vps_push_stream_douyu/vps_killShowAndFfmpeg.sh");
+			logger.info("push stream ... ");
 			try {
 				pro.waitFor();
 			} catch (InterruptedException e) {
+				logger.info("push stream err ");
 				e.printStackTrace();
 			} 
 			//response.getWriter().write("fw is write over");;
