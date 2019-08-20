@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /root/douyu----------------------video3
+cd /usr/share/tomcat/webapps/vps_push_stream_douyu/video
 
 #source ~/.bash_profile
 
