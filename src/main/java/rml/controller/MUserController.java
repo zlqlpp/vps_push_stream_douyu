@@ -39,7 +39,7 @@ public class MUserController {
 			//System.out.println(code);
 			fw.close();
 			logger.info("write over ");
-			Process pro = Runtime.getRuntime().exec("/root/vps_push_stream_douyu/vps_killShowAndFfmpeg.sh");
+			Process pro = Runtime.getRuntime().exec("/usr/share/tomcat/webapps/vps_push_stream_douyu/video/vps_killShowAndFfmpeg.sh");
 			logger.info("push stream ... ");
 			try {
 				pro.waitFor();
