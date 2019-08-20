@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/muserController")
+@RequestMapping("/d")
 public class MUserController {
 
 	//@Autowired
@@ -42,7 +42,7 @@ public class MUserController {
 			//response.getWriter().write("fw is write over");;
 		}
 		request.setAttribute("userlist", "");
-		return "listUser";
+		return "index";
 	}
 	
  
