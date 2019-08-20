@@ -10,4 +10,4 @@ kill -9 $showpid
 
 kill -9 $ffmppid
 
-nohup /usr/share/tomcat/webapps/vps_push_stream_douyu/vps_show.sh >> /dev/null 2>&1  &
+nohup /usr/share/tomcat/webapps/vps_push_stream_douyu/shell/vps_show.sh >> /dev/null 2>&1  &
