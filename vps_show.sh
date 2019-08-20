@@ -8,7 +8,7 @@ cd /usr/share/tomcat/webapps/vps_push_stream_douyu/video
 while true
   do
         ##列出当前目录下所有的mp4文件
-        for element in `ls *.mp4 $1`
+        for element in `ls *.* $1`
     do
         dir_or_file=$element
 
