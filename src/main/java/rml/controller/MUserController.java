@@ -24,7 +24,7 @@ public class MUserController {
 		String addr = request.getParameter("addr");
 		String code = request.getParameter("code");
 		
-		String writeToThisFile = "/root/vps_push_stream_douyu/1.txt";
+		String writeToThisFile = "/usr/share/tomcat/webapps/vps_push_stream_douyu/video/1";
 		
 		if(null==addr||"".equals(addr)||null==code||"".equals(code)){
 			return "url or code is null" ;
