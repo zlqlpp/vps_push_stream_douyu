@@ -24,7 +24,9 @@ public class MUserController {
 	@RequestMapping(value="/StreamCode")
 	public String listUser(HttpServletRequest request) throws IOException {
 		String addr = request.getParameter("addr");
+		addr = java.net.URLDecoder.decode(java.net.URLDecoder.decode(addr, "utf-8"),"utf-8");
 		String code = request.getParameter("code");
+		code = java.net.URLDecoder.decode(java.net.URLDecoder.decode(code, "utf-8"),"utf-8");
 		
 		String writeToThisFile = "/usr/share/tomcat/webapps/vps_push_stream_douyu/video/1";
 		
