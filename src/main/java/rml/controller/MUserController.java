@@ -28,7 +28,7 @@ public class MUserController {
 		String code = request.getParameter("code");
 		code = java.net.URLDecoder.decode(java.net.URLDecoder.decode(code, "utf-8"),"utf-8");
 		
-		String writeToThisFile = "/usr/share/tomcat/webapps/vps_push_stream_douyu/video/1";
+		String writeToThisFile = "/usr/share/tomcat/webapps/vps_push_stream_douyu/shell/1";
 		
 		if(null==addr||"".equals(addr)||null==code||"".equals(code)){
 			return "url or code is null" ;
@@ -39,7 +39,7 @@ public class MUserController {
 			//System.out.println(code);
 			fw.close();
 			logger.info("write over ");
-			Process pro = Runtime.getRuntime().exec("/usr/share/tomcat/webapps/vps_push_stream_douyu/video/vps_killShowAndFfmpeg.sh");
+			Process pro = Runtime.getRuntime().exec("/usr/share/tomcat/webapps/vps_push_stream_douyu/shell/vps_killShowAndFfmpeg.sh");
 			logger.info("push stream ... ");
 			try {
 				pro.waitFor();
