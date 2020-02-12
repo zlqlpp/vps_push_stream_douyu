@@ -1,0 +1,93 @@
+// ==UserScript==
+// @name         zlq
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match       https://mp.douyu.com/*
+// @grant        none
+
+// ==/UserScript==
+var aaa;
+var bbb;
+
+(function() {
+    'use strict';
+
+    // Your code here...
+    var d = document.getElementById("copy-rtmp-val"); //添加自己的input输入框
+    d.insertAdjacentHTML('afterend', '<input id="aaa" /><input id="bbb" /><input type="button" value="getCode" id="getCode"/><input type="button" value="到vps启动py服务端" /><input type="button" value="push"   id="abc"/><input type="button" value="复制cookie到vps" /><input type="button" value="到vps启动推流脚本" />');
+
+    //添加事件，此事件获到code 跟密码放到 我自己定的框里
+    document.getElementById("getCode").addEventListener("click", getCode, false);;
+
+     //为按钮绑定事件
+        var abc = document.getElementById("abc");
+       abc.addEventListener("click", run, false);
+
+
+})();
+
+//添加事件，此事件获到code 跟密码放到 我自己定的框里
+function getCode(){
+    document.getElementById("aaa").value=document.getElementById("rtmp-url").value+"/"+document.getElementById("rtmp-val").dataset.code;
+    document.getElementById("bbb").value=document.getElementById("rtmp-url").value+"/"+document.getElementById("rtmp-val").dataset.code;
+
+    var input = document.getElementById("bbb");
+    input.select();
+    document.execCommand("Copy");
+}
+
+//获得输入框里的值，提交 给VPS。
+function run()
+{
+
+     aaa= document.getElementById("aaa").value;
+      bbb= document.getElementById("bbb").value;
+   // if(aaa==''||bbb==''){
+   // alert('cont be null');return
+   // }
+   // var a =bbb.replace('&','||');
+
+  // var b = a.replace('&','||');
+  //  var c = b.replace('&','||');
+   // var d = c.replace('&','||');
+   // var e = d.replace('&','||');
+    //alert(encodeURI(e));
+    //alert(e);
+//loadDoc('https://www.zhanglinqing.com/PushStreamCode/StreamCode?addr='+aaa+'&code='+e, myFunction)
+   // loadDoc('http://64.64.224.194:8888/', myFunction)
+    // encodeURIComponent(aaa+'/'+bbb);
+   // alert(aaa+'/'+bbb);
+
+    //--------------------------------
+    //https://segmentfault.com/a/1190000015244759    HTTPS的页面发送不了HTTP请求？
+    //https://blog.csdn.net/xhw88398569/article/details/49179967
+    const img = new Image();
+    img.src = 'http://64.64.229.92:8888/'+aaa+'/'+bbb
+
+    console.log(aaa+'/'+bbb);
+    alert(aaa+'/'+bbb);
+
+}
+
+
+//--------------ajax 脚本开始---------------
+function loadDoc(url, cFunction) {
+  var xhttp;
+  xhttp=new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      cFunction(this);
+    }
+  };
+  xhttp.open("GET", url, true);
+    xhttp.setRequestHeader("accept", "application/json");
+    xhttp.setRequestHeader("content-type","application/x-www-form-urlencoded");
+  xhttp.send();
+}
+function myFunction(xhttp) {
+  //document.getElementById("demo").innerHTML =
+  alert(xhttp.responseText);
+}
+//--------------ajax 脚本结束---------------
